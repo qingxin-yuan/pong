@@ -84,3 +84,15 @@ h1 {
   margin-bottom: 1rem; 
   text-align: center;
 }
+
+.board{
+  fill: #353535;
+}
+rect,circle{
+  fill: #ffffff;
+}
+line{
+  stroke: #666600;
+  stroke-width: 5;
+  stroke-dasharray: 15,15;
+}
