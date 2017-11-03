@@ -13,9 +13,11 @@ export default class Game {
 		this.paddleWidth = paddleWidth;
 		this.paddleHeight = paddleHeight;
 		this.ballRadius = ballRadius;
-	
+		//grab the div game element in html
 		this.gameElement = document.getElementById(this.element);
+		//instantiate new classes into the game
 		this.board = new Board(this.width, this.height);
+		
 		this.ball = new Ball(this.ballRadius, this.width, this.height);
 
 		this.paddleOne = new Paddle(
