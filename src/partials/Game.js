@@ -2,6 +2,7 @@ import {SVG_NS, KEYS, boardGap, paddleWidth, paddleHeight, ballRadius} from '../
 import Board from './Board'
 import Paddle from './Paddle'
 import Ball from './Ball'
+import Score from './Score'
 
 export default class Game {
 
@@ -42,6 +43,9 @@ export default class Game {
 			KEYS.down
 		);
 
+		this.scoreOne = new Score(50, 30, 30);
+		this.scoreTwo = new Score(206, 30, 30);
+
 		document.addEventListener('keydown',event =>{
 			if (event.key===KEYS.spaceBar){
 				this.pause = !this.pause;
@@ -70,7 +74,9 @@ export default class Game {
 		this.paddleTwo.render(svg);
 
 		this.ball.render(svg, this.paddleOne, this.paddleTwo);
-		
+
+		this.scoreOne.render(svg,this.paddleOne.score);
+		this.scoreTwo.render(svg, this.paddleTwo.score);
 
 		
 	}

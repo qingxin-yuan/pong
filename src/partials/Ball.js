@@ -26,14 +26,19 @@ export default class Ball {
     
   }
 
-  wallCollision(){
+  wallCollision(paddle1,paddle2){
     const hitLeft = (this.x - this.radius) <= 0;
     const hitRight = (this.x + this.radius) >= this.boardWidth;
     const hitTop = (this.y - this.radius) <=0;
     const hitBottom = (this.y + this.radius) >= this.boardHeight;
 
-    if (hitLeft || hitRight){
-      this.vx = -this.vx;
+    if (hitLeft){
+      this.direction = -1;
+      this.goal(paddle2);
+    }
+    else if (hitRight){
+      this.direction = 1;
+      this.goal(paddle1);
     }
     else if (hitTop || hitBottom){
       this.vy = -this.vy;
@@ -53,7 +58,7 @@ export default class Ball {
         this.vx = -this.vx;
       }
     } 
-    
+
     else {
       //detect paddle collision on the left side (paddle1)
       let paddle = paddle1.coordinates(paddle1.x, paddle1.y, paddle1.width, paddle1.height);
@@ -67,11 +72,17 @@ export default class Ball {
     }
   }
 
+  goal(paddle){
+      paddle.score++;
+      this.reset();
+      console.log(paddle.score);
+  }
+
   render(svg, paddleOne, paddleTwo){
     this.y = this.y + this.vy;
     this.x = this.x + this.vx;
 
-    this.wallCollision();
+    this.wallCollision(paddleOne,paddleTwo);
     this.paddleCollision(paddleOne, paddleTwo);
     let circle = document.createElementNS(SVG_NS,'circle');
 
