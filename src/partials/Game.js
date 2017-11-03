@@ -1,4 +1,4 @@
-import {SVG_NS,KEYS, boardGap, paddleWidth, paddleHeight, ballRadius} from '../settings'
+import {SVG_NS, KEYS, boardGap, paddleWidth, paddleHeight, ballRadius} from '../settings'
 import Board from './Board'
 import Paddle from './Paddle'
 import Ball from './Ball'
@@ -13,11 +13,13 @@ export default class Game {
 		this.paddleWidth = paddleWidth;
 		this.paddleHeight = paddleHeight;
 		this.ballRadius = ballRadius;
+		this.pause = 0;
+
 		//grab the div game element in html
 		this.gameElement = document.getElementById(this.element);
 		//instantiate new classes into the game
 		this.board = new Board(this.width, this.height);
-		
+
 		this.ball = new Ball(this.ballRadius, this.width, this.height);
 
 		this.paddleOne = new Paddle(
@@ -39,11 +41,21 @@ export default class Game {
 			KEYS.up,
 			KEYS.down
 		);
+
+		document.addEventListener('keydown',event =>{
+			if (event.key===KEYS.spaceBar){
+				this.pause = !this.pause;
+			}
+		})
 	}
 
 	render() {
-		this.gameElement.innerHTML = '';
+		if (this.pause){
+			return;
+		}
 
+		this.gameElement.innerHTML = '';
+		
 		let svg = document.createElementNS(SVG_NS, 'svg');
 		svg.setAttributeNS(null,'width', this.width);
 		svg.setAttributeNS(null,'height', this.height);
@@ -57,7 +69,9 @@ export default class Game {
 		this.paddleOne.render(svg);
 		this.paddleTwo.render(svg);
 
-		this.ball.render(svg);
+		this.ball.render(svg, this.paddleOne, this.paddleTwo);
+		
+
 		
 	}
 

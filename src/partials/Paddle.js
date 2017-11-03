@@ -9,9 +9,9 @@ export default class Paddle{
     this.x = x;
     this.y = y;
 
-    this.speed = 10;//change during the weekend
+    this.speed = 30;//change during the weekend
     this.score = 0;
-
+    //jquery equivelant of .on
     document.addEventListener('keydown', event => {//key pressed listner
       switch(event.key){
         case up: 
@@ -24,15 +24,22 @@ export default class Paddle{
     });
   }
 
+  //method to calculate coordinates of the paddle
+  coordinates(x, y, width, height) {
+    let leftX = x;
+    let rightX = x + width;
+    let topY = y;
+    let bottomY = y + height;
+    return {leftX, rightX, topY, bottomY};
+  }
+
   up(){
-    
     //get max number
     //either 0 or the y position of the paddle
     this.y = Math.max((this.y-this.speed), 0);
   }
 
   down(){
-
     //get the min number
     //either height of the board minus the height of the paddle or the y position plus the speed
     this.y = Math.min((this.y + this.speed),(this.boardHeight-this.height));
