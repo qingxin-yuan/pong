@@ -85,7 +85,7 @@ h1 {
   text-align: center;
 }
 
-.board{
+/* .board{
   fill: #353535;
 }
 rect,circle{
@@ -95,4 +95,4 @@ line{
   stroke: #666600;
   stroke-width: 5;
   stroke-dasharray: 15,15;
-}
+}  */
