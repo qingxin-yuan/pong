@@ -5,7 +5,7 @@ import Ball from './Ball'
 import Score from './Score'
 
 export default class Game {
-
+	
 	constructor(element, width, height) {
 		this.element = element;
 		this.width = width;
@@ -15,14 +15,14 @@ export default class Game {
 		this.paddleHeight = paddleHeight;
 		this.ballRadius = ballRadius;
 		this.pause = 0;
-
+		
 		//grab the div game element in html
 		this.gameElement = document.getElementById(this.element);
 		//instantiate new classes into the game
 		this.board = new Board(this.width, this.height);
-
+		
 		this.ball = new Ball(this.ballRadius, this.width, this.height);
-
+		
 		this.paddleOne = new Paddle(
 			this.height, 
 			this.paddleWidth, 
@@ -32,7 +32,7 @@ export default class Game {
 			KEYS.a,
 			KEYS.z
 		);
-
+		
 		this.paddleTwo = new Paddle(
 			this.height, 
 			this.paddleWidth, 
@@ -42,9 +42,9 @@ export default class Game {
 			KEYS.up,
 			KEYS.down
 		);
-
-		this.scoreOne = new Score(50, 30, 30);
-		this.scoreTwo = new Score(206, 30, 30);
+		
+		this.scoreOne = new Score(this.width/2-40, 30, 30);
+		this.scoreTwo = new Score(this.width/2+20, 30, 30);
 
 		document.addEventListener('keydown',event =>{
 			if (event.key===KEYS.spaceBar){
@@ -52,12 +52,12 @@ export default class Game {
 			}
 		})
 	}
-
+	
 	render() {
 		if (this.pause){
 			return;
 		}
-
+		
 		this.gameElement.innerHTML = '';
 		
 		let svg = document.createElementNS(SVG_NS, 'svg');
@@ -65,20 +65,20 @@ export default class Game {
 		svg.setAttributeNS(null,'height', this.height);
 		svg.setAttributeNS(null,'viewbox', `0 0 ${this.width} ${this.height}`);
 		svg.setAttributeNS(null, 'version','1.1');
-
+		
 		this.gameElement.appendChild(svg);
-
+		
 		this.board.render(svg);
-
+		
 		this.paddleOne.render(svg);
 		this.paddleTwo.render(svg);
-
+		
 		this.ball.render(svg, this.paddleOne, this.paddleTwo);
-
+		
 		this.scoreOne.render(svg,this.paddleOne.score);
 		this.scoreTwo.render(svg, this.paddleTwo.score);
-
+		
 		
 	}
-
+	
 }

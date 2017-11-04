@@ -7,6 +7,4 @@ const game = new Game('game', 512, 256);
 (function gameLoop() {//infinite gameloop
     game.render();
     requestAnimationFrame(gameLoop);
-    // console.log(game.pause);
-    // return game.pause;
 })();

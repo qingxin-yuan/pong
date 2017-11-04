@@ -8,7 +8,7 @@ export default class Score {
     // this.score = paddle.score;
   }
   render(svg,score){
-
+    
     let text = document.createElementNS(SVG_NS,'text');
     
     text.setAttributeNS(null, 'x', this.x);
@@ -17,7 +17,7 @@ export default class Score {
     text.setAttributeNS(null, 'font-size', this.size);
     text.setAttributeNS(null, 'fill', 'white');
     text.textContent = score;
-
+    
     svg.appendChild(text);
   }
 }
