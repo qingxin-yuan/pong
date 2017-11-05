@@ -2,41 +2,48 @@ import {SVG_NS} from '../settings';
 
 export default class Paddle{
   
-  constructor(boardHeight, width, height, x, y, keyUp, keyDown){
+  constructor(boardHeight, width, height, x, y, upKey, downKey, fireKey){
     this.boardHeight = boardHeight;
     this.width = width;
     this.height = height;
     this.x = x;
     this.y = y;
-    this.keyUp = keyUp;
-    this.keyDown = keyDown;
+    this.upKey = upKey;
+    this.downKey = downKey;
+    this.fireKey = fireKey;
 
     this.upPressed = false;
     this.downPressed = false;
+    this.fireKeyPressed = false;
 
     this.speed = 5;//change during the weekend
     this.score = 0;
+    this.goal = false;
 
     //jquery equivelant of .on
     document.addEventListener('keydown', event => {//key pressed listner
+      // console.log(event.key);
       event.preventDefault();
       switch(event.key){
-        case this.keyUp: 
+        case this.upKey: 
           this.upPressed = true;
         break;
-        case this.keyDown:
+        case this.downKey:
           this.downPressed = true;
         break;
+        case this.fireKey:
+          this.fireKeyPressed = true;
+          console.log(this.fireKeyPressed);
       }
     });
 
     document.addEventListener('keyup', event => {//key pressed listner
       event.preventDefault();
       switch(event.key){
-        case this.keyUp: 
+        case this.upKey: 
           this.upPressed = false;
         break;
-        case this.keyDown:
+        case this.downKey:
           this.downPressed = false;
         break;
       }

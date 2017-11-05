@@ -30,7 +30,8 @@ export default class Game {
 			this.boardGap, 
 			(this.height-this.paddleHeight)/2,
 			KEYS.a,
-			KEYS.z
+			KEYS.z,
+			KEYS.f
 		);
 		
 		this.paddleTwo = new Paddle(
@@ -40,7 +41,8 @@ export default class Game {
 			(this.width-this.boardGap-this.paddleWidth), 
 			(this.height-this.paddleHeight)/2,
 			KEYS.up,
-			KEYS.down
+			KEYS.down,
+			KEYS.enter
 		);
 		
 		this.scoreOne = new Score(this.width/2-40, 30, 30);
