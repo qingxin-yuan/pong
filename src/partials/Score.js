@@ -1,11 +1,11 @@
 import {SVG_NS} from '../settings'
 
 export default class Score {
-  constructor(x, y, size) {
+  constructor(x, y, size, center) {
     this.x = x;
     this.y = y;
     this.size = size;
-    // this.score = paddle.score;
+    this.center = center;
   }
   render(svg,score){
     
@@ -16,6 +16,8 @@ export default class Score {
     text.setAttributeNS(null, 'font-family', '"Silkscreen Web", monotype');
     text.setAttributeNS(null, 'font-size', this.size);
     text.setAttributeNS(null, 'fill', 'white');
+    //center score using text-anchor attribute
+    text.setAttributeNS(null, 'text-anchor', this.center);
     text.textContent = score;
     
     svg.appendChild(text);

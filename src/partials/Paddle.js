@@ -33,7 +33,6 @@ export default class Paddle{
         break;
         case this.fireKey:
           this.fireKeyPressed = true;
-          console.log(this.fireKeyPressed);
       }
     });
 

@@ -85,14 +85,23 @@ h1 {
   text-align: center;
 }
 
-/* .board{
-  fill: #353535;
+.text{
+  display: none;
 }
-rect,circle{
-  fill: #ffffff;
+#text{
+  display: block;
+  text-align: center;
+  animation: tripping 1s ease-in-out infinite;
 }
-line{
-  stroke: #666600;
-  stroke-width: 5;
-  stroke-dasharray: 15,15;
-}  */
+
+@keyframes tripping{
+  0%{
+    font-size: 1rem;
+  }
+  50%{
+    font-size: 2.5rem;
+  }
+  100%{
+    font-size: 1rem;
+  }
+}

@@ -3,6 +3,7 @@ import Board from './Board'
 import Paddle from './Paddle'
 import Ball from './Ball'
 import Score from './Score'
+import TrippingBall from './TrippingBall'
 
 export default class Game {
 	
@@ -23,6 +24,14 @@ export default class Game {
 		
 		this.ball = new Ball(this.ballRadius, this.width, this.height);
 		
+		this.trippingball1 = new TrippingBall (this.ballRadius*2, this.width, this.height);
+		this.trippingball2 = new TrippingBall (this.ballRadius*0.7, this.width, this.height);
+		this.trippingball3 = new TrippingBall (this.ballRadius*1.2, this.width, this.height);
+		this.trippingball4 = new TrippingBall (this.ballRadius, this.width, this.height);
+		this.trippingball5 = new TrippingBall (this.ballRadius*2.5, this.width, this.height);
+		this.trippingball6 = new TrippingBall (this.ballRadius*3, this.width, this.height);
+		this.trippingball7 = new TrippingBall (this.ballRadius*3.5, this.width, this.height);
+
 		this.paddleOne = new Paddle(
 			this.height, 
 			this.paddleWidth, 
@@ -45,8 +54,8 @@ export default class Game {
 			KEYS.enter
 		);
 		
-		this.scoreOne = new Score(this.width/2-40, 30, 30);
-		this.scoreTwo = new Score(this.width/2+20, 30, 30);
+		this.scoreOne = new Score(this.width/2-20, 30, 30, 'end');
+		this.scoreTwo = new Score(this.width/2+20, 30, 30, 'start');
 
 		document.addEventListener('keydown',event =>{
 			if (event.key===KEYS.spaceBar){
@@ -69,14 +78,32 @@ export default class Game {
 		svg.setAttributeNS(null, 'version','1.1');
 		
 		this.gameElement.appendChild(svg);
-		
+
 		this.board.render(svg);
 		
 		this.paddleOne.render(svg);
 		this.paddleTwo.render(svg);
 		
-		this.ball.render(svg, this.paddleOne, this.paddleTwo);
-		
+
+		//hide the original ball when score reaches 5 and generate TRIPPING balls
+		if (this.paddleOne.score < 2 && this.paddleTwo.score < 2){
+			this.ball.render(svg, this.paddleOne, this.paddleTwo);
+		}
+		else {
+			this.trippingball1.render(svg,this.paddleOne, this.paddleTwo);
+			this.trippingball2.render(svg,this.paddleOne, this.paddleTwo);
+			this.trippingball3.render(svg,this.paddleOne, this.paddleTwo);
+			this.trippingball4.render(svg,this.paddleOne, this.paddleTwo);
+			this.trippingball5.render(svg,this.paddleOne, this.paddleTwo);
+			this.trippingball6.render(svg,this.paddleOne, this.paddleTwo);
+			this.trippingball7.render(svg,this.paddleOne, this.paddleTwo);
+
+			let text = document.getElementsByClassName('text')[0];
+			text.setAttribute('id','text');
+
+		}
+
+
 		this.scoreOne.render(svg,this.paddleOne.score);
 		this.scoreTwo.render(svg, this.paddleTwo.score);
 		
