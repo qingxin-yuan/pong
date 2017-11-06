@@ -1,6 +1,6 @@
 # Pong Game
 
-A basic pong game using SVGs.
+A pong game using SVGs built with JavaScript.
 
 ## Setup
 
@@ -29,4 +29,5 @@ A basic pong game using SVGs.
 * enter: fire the ball after goal
 
 ## Features
+* Object-Oriented programming, using partials and instantiate in index.js; organized and easy to work with
 * 
