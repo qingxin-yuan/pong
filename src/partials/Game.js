@@ -86,7 +86,7 @@ export default class Game {
 		
 
 		//hide the original ball when score reaches 5 and generate TRIPPING balls
-		if (this.paddleOne.score < 2 && this.paddleTwo.score < 2){
+		if (this.paddleOne.score < 5 && this.paddleTwo.score < 5){
 			this.ball.render(svg, this.paddleOne, this.paddleTwo);
 		}
 		else {
