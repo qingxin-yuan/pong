@@ -3,6 +3,7 @@ export const SVG_NS = 'http://www.w3.org/2000/svg';
 export const boardGap = 10;
 export const paddleWidth = 8;
 export const paddleHeight = 56;
+export const paddleSpeed = 5;
 export const ballRadius = 8;
 
 export const KEYS = {

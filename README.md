@@ -27,3 +27,6 @@ A basic pong game using SVGs.
 * ▲ : up
 * ▼: down
 * enter: fire the ball after goal
+
+## Features
+* 

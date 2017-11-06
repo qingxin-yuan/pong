@@ -17,9 +17,10 @@ export default class Game {
 		this.ballRadius = ballRadius;
 		this.pause = 0;
 		
-		//grab the div game element in html
+		//GRAB THE #GAME ELEMENT IN HTML
 		this.gameElement = document.getElementById(this.element);
-		//instantiate new classes into the game
+
+		//INSTANTIATE OBJECTS FROM EACH CLASS ACCORDINGLY
 		this.board = new Board(this.width, this.height);
 		
 		this.ball = new Ball(this.ballRadius, this.width, this.height);
@@ -27,8 +28,8 @@ export default class Game {
 		this.trippingball1 = new TrippingBall (this.ballRadius*2, this.width, this.height);
 		this.trippingball2 = new TrippingBall (this.ballRadius*0.7, this.width, this.height);
 		this.trippingball3 = new TrippingBall (this.ballRadius*1.2, this.width, this.height);
-		this.trippingball4 = new TrippingBall (this.ballRadius, this.width, this.height);
-		this.trippingball5 = new TrippingBall (this.ballRadius*2.5, this.width, this.height);
+		this.trippingball4 = new TrippingBall (this.ballRadius*2.5, this.width, this.height);
+		this.trippingball5 = new TrippingBall (this.ballRadius, this.width, this.height);
 		this.trippingball6 = new TrippingBall (this.ballRadius*3, this.width, this.height);
 		this.trippingball7 = new TrippingBall (this.ballRadius*3.5, this.width, this.height);
 
@@ -57,6 +58,7 @@ export default class Game {
 		this.scoreOne = new Score(this.width/2-20, 30, 30, 'end');
 		this.scoreTwo = new Score(this.width/2+20, 30, 30, 'start');
 
+		//ADD EVENTLISTENER FOR PAUSING THE GAME USING SPACE BAR
 		document.addEventListener('keydown',event =>{
 			if (event.key===KEYS.spaceBar){
 				this.pause = !this.pause;
@@ -83,9 +85,8 @@ export default class Game {
 		
 		this.paddleOne.render(svg);
 		this.paddleTwo.render(svg);
-		
 
-		//hide the original ball when score reaches 5 and generate TRIPPING balls
+		//AFTER EITHER GOAL REACHES 5, 7 TRIPPING BALLS ARE TRIGGERED, APPEARING RANDOMLY ON THE GAME BOARD
 		if (this.paddleOne.score < 5 && this.paddleTwo.score < 5){
 			this.ball.render(svg, this.paddleOne, this.paddleTwo);
 		}
@@ -98,9 +99,9 @@ export default class Game {
 			this.trippingball6.render(svg,this.paddleOne, this.paddleTwo);
 			this.trippingball7.render(svg,this.paddleOne, this.paddleTwo);
 
-			let text = document.getElementsByClassName('text')[0];
-			text.setAttribute('id','text');
-
+			//ANIMATE TEXT AND CHANGE BACKGROUND COLOR WHEN TRIPPING BALLS ARE TRIGGERED
+			document.getElementsByClassName('text')[0].setAttribute('id','text');
+			document.querySelector('body').setAttribute('style', 'background: #6b8e23');
 		}
 
 

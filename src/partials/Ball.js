@@ -16,7 +16,7 @@ export default class Ball {
     this.x = this.boardWidth/2;
     this.y = this.boardHeight/2;
     
-    //MODIFY THIS DURING THE WEEKEND
+    //GENERATE RANDOM SPEED FOR THE BALL - VX & VY
     //vy random number b/w (-5, 5)
     this.vy = 0;
     while (this.vy===0){
@@ -27,10 +27,11 @@ export default class Ball {
     
   }
   
+  //METHOD TO RESET THE BALL AT WINNER'S SIDE OF THE PADDLE
   resetAfterGoal(paddle1,paddle2){
     if (paddle1.goal){
       this.x = boardGap + paddleWidth + this.radius;
-      // this.y = paddle1.y + 0.5 * paddle1.height;
+      //calling coordinates method in paddle class to get the current y position of the paddle
       let paddle = paddle1.coordinates(paddle1.x, paddle1.y, paddle1.width, paddle1.height);
       let {topY, bottomY} = paddle;
       this.y = (topY + bottomY)/2;
@@ -44,6 +45,7 @@ export default class Ball {
     
   }
   
+  //METHOD FOR WALL COLLISION OF THE BALL, WITH GOAL CALCULATION AND BALL POSITION RESET AFTER GOAL
   wallCollision(paddle1,paddle2){
     const hitLeft = (this.x - this.radius) <= 0;
     const hitRight = (this.x + this.radius) >= this.boardWidth;
@@ -69,6 +71,8 @@ export default class Ball {
     }
   }
   
+  //METHOD FOR PADDLE COLLISION DETECTION
+  //fixed the bug that when ball resets at the edge of paddle, ball keeps bouncing
   paddleCollision(paddle1, paddle2){
     if (this.vx > 0 && !paddle1.goal) {
       
@@ -79,8 +83,8 @@ export default class Ball {
       if (
         (this.x+this.radius >= leftX) && (this.y >= topY ) && (this.y <= bottomY)
       ){
-          this.vx = -this.vx;
-          this.ping.play();
+        this.vx = -this.vx;
+        this.ping.play();
       }
     } 
     
@@ -92,18 +96,19 @@ export default class Ball {
       if(
         (this.x-this.radius <= rightX) && (this.y >= topY) && (this.y <= bottomY)
       ){
-          this.vx = -this.vx;
-          this.ping.play();
-        }
-        
+        this.vx = -this.vx;
+        this.ping.play();
       }
+      
+    }
     
   }
   
+  //METHOD FOR FIRING THE BALL WHEN FIREKEY PRESSED
   fireShot(paddle1,paddle2){
-
+    //generate speed when there's a goal on either side
     if (paddle1.goal && paddle1.fireKeyPressed){
-
+      
       while (this.vy===0){
         this.vy = Math.floor(Math.random() * 10 - 5); 
       }
@@ -123,11 +128,12 @@ export default class Ball {
       paddle2.fireKeyPressed = false;
       paddle2.goal = false;
     }
+    //moves the ball along with the paddle, yet with no bouncing until firekey is pressed
     else if (paddle1.goal){
-      //keep the ball static until fireKey is pressed
+      
       this.vx = 0;
       this.vy = 0;
-
+      
       let paddle = paddle1.coordinates(paddle1.x, paddle1.y, paddle1.width, paddle1.height);
       let {topY, bottomY} = paddle;
       this.y = (topY + bottomY)/2;
@@ -135,17 +141,17 @@ export default class Ball {
     else if (paddle2.goal){
       this.vx = 0;
       this.vy = 0;
-
+      
       let paddle = paddle2.coordinates(paddle2.x, paddle2.y, paddle2.width, paddle2.height);
       let {topY, bottomY} = paddle;
       this.y = (topY + bottomY)/2;
     }
   }
-
+  
+  //METHOD FOR COUNTING GOAL FOR THE PADDLE
   goal(paddle){
     paddle.score++;
     paddle.goal = true;
-    // console.log(paddle.goal);
   }
   
   
@@ -156,7 +162,7 @@ export default class Ball {
     this.wallCollision(paddle1,paddle2);
     this.paddleCollision(paddle1, paddle2);
     this.fireShot(paddle1,paddle2);
-
+    
     let circle = document.createElementNS(SVG_NS,'circle');
     
     circle.setAttributeNS(null, 'r', this.radius);
