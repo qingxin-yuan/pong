@@ -57,3 +57,4 @@ Besides the above, I definitely had fun making the game! Especially the tripping
 ## Acknowledgement
 * Thanks Mandi for walking though the OOP process and how to implement classes and objects in JS.
 * Thanks Red Academy for project materials preparation
+* Background music: the warden by chelsea wolfe (maceo plex remix). 
