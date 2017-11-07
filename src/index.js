@@ -8,3 +8,6 @@ const game = new Game('game', 512, 256);
     game.render();
     requestAnimationFrame(gameLoop);
 })();
+
+const music = new Audio('public/sounds/the-warden-maceo-plex-clipped.mp3');
+music.play();

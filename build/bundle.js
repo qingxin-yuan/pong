@@ -1,1 +1,1227 @@
-!function(t){function e(n){if(i[n])return i[n].exports;var s=i[n]={i:n,l:!1,exports:{}};return t[n].call(s.exports,s,s.exports,e),s.l=!0,s.exports}var i={};e.m=t,e.c=i,e.i=function(t){return t},e.d=function(t,i,n){e.o(t,i)||Object.defineProperty(t,i,{configurable:!1,enumerable:!0,get:n})},e.n=function(t){var i=t&&t.__esModule?function(){return t.default}:function(){return t};return e.d(i,"a",i),i},e.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},e.p="",e(e.s=4)}([function(t,e,i){"use strict";Object.defineProperty(e,"__esModule",{value:!0});e.SVG_NS="http://www.w3.org/2000/svg",e.boardGap=10,e.paddleWidth=8,e.paddleHeight=56,e.paddleSpeed=5,e.ballRadius=8,e.KEYS={a:"a",z:"z",f:"f",up:"ArrowUp",down:"ArrowDown",enter:"Enter",spaceBar:" "}},function(t,e,i){t.exports=i.p+"public/fonts/slkscr-webfont.eot"},function(t,e,i){"use strict";function n(t){return t&&t.__esModule?t:{default:t}}function s(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}Object.defineProperty(e,"__esModule",{value:!0});var r=function(){function t(t,e){for(var i=0;i<e.length;i++){var n=e[i];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(t,n.key,n)}}return function(e,i,n){return i&&t(e.prototype,i),n&&t(e,n),e}}(),o=i(0),a=i(6),h=n(a),l=i(7),d=n(l),u=i(5),f=n(u),c=i(8),p=n(c),b=i(9),y=n(b),v=function(){function t(e,i,n){var r=this;s(this,t),this.element=e,this.width=i,this.height=n,this.boardGap=o.boardGap,this.paddleWidth=o.paddleWidth,this.paddleHeight=o.paddleHeight,this.ballRadius=o.ballRadius,this.pause=0,this.gameElement=document.getElementById(this.element),this.board=new h.default(this.width,this.height),this.ball=new f.default(this.ballRadius,this.width,this.height),this.trippingball1=new y.default(2*this.ballRadius,this.width,this.height),this.trippingball2=new y.default(.7*this.ballRadius,this.width,this.height),this.trippingball3=new y.default(1.2*this.ballRadius,this.width,this.height),this.trippingball4=new y.default(2.5*this.ballRadius,this.width,this.height),this.trippingball5=new y.default(this.ballRadius,this.width,this.height),this.trippingball6=new y.default(3*this.ballRadius,this.width,this.height),this.trippingball7=new y.default(3.5*this.ballRadius,this.width,this.height),this.paddleOne=new d.default(this.height,this.paddleWidth,this.paddleHeight,this.boardGap,(this.height-this.paddleHeight)/2,o.KEYS.a,o.KEYS.z,o.KEYS.f),this.paddleTwo=new d.default(this.height,this.paddleWidth,this.paddleHeight,this.width-this.boardGap-this.paddleWidth,(this.height-this.paddleHeight)/2,o.KEYS.up,o.KEYS.down,o.KEYS.enter),this.scoreOne=new p.default(this.width/2-20,30,30,"end"),this.scoreTwo=new p.default(this.width/2+20,30,30,"start"),document.addEventListener("keydown",function(t){t.key===o.KEYS.spaceBar&&(r.pause=!r.pause)})}return r(t,[{key:"render",value:function(){if(!this.pause){this.gameElement.innerHTML="";var t=document.createElementNS(o.SVG_NS,"svg");t.setAttributeNS(null,"width",this.width),t.setAttributeNS(null,"height",this.height),t.setAttributeNS(null,"viewbox","0 0 "+this.width+" "+this.height),t.setAttributeNS(null,"version","1.1"),this.gameElement.appendChild(t),this.board.render(t),this.paddleOne.render(t),this.paddleTwo.render(t),this.paddleOne.score<5&&this.paddleTwo.score<5?this.ball.render(t,this.paddleOne,this.paddleTwo):(this.trippingball1.render(t,this.paddleOne,this.paddleTwo),this.trippingball2.render(t,this.paddleOne,this.paddleTwo),this.trippingball3.render(t,this.paddleOne,this.paddleTwo),this.trippingball4.render(t,this.paddleOne,this.paddleTwo),this.trippingball5.render(t,this.paddleOne,this.paddleTwo),this.trippingball6.render(t,this.paddleOne,this.paddleTwo),this.trippingball7.render(t,this.paddleOne,this.paddleTwo),document.getElementsByClassName("text")[0].setAttribute("id","text"),document.querySelector("body").setAttribute("style","background: #6b8e23")),this.scoreOne.render(t,this.paddleOne.score),this.scoreTwo.render(t,this.paddleTwo.score)}}}]),t}();e.default=v},function(t,e,i){var n=i(10);"string"==typeof n&&(n=[[t.i,n,""]]);i(15)(n,{});n.locals&&(t.exports=n.locals)},function(t,e,i){"use strict";i(3);var n=i(2),s=function(t){return t&&t.__esModule?t:{default:t}}(n),r=new s.default("game",512,256);!function t(){r.render(),requestAnimationFrame(t)}()},function(t,e,i){"use strict";function n(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}Object.defineProperty(e,"__esModule",{value:!0});var s=function(){function t(t,e){for(var i=0;i<e.length;i++){var n=e[i];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(t,n.key,n)}}return function(e,i,n){return i&&t(e.prototype,i),n&&t(e,n),e}}(),r=i(0),o=function(){function t(e,i,s){n(this,t),this.radius=e,this.boardWidth=i,this.boardHeight=s,this.direction=1,this.ping=new Audio("public/sounds/pong-03.wav"),this.pong=new Audio("public/sounds/pong-04.wav"),this.reset()}return s(t,[{key:"reset",value:function(){for(this.x=this.boardWidth/2,this.y=this.boardHeight/2,this.vy=0;0===this.vy;)this.vy=Math.floor(10*Math.random()-5);this.vx=this.direction*(6-Math.abs(this.vy))}},{key:"resetAfterGoal",value:function(t,e){if(t.goal){this.x=r.boardGap+r.paddleWidth+this.radius;var i=t.coordinates(t.x,t.y,t.width,t.height),n=i.topY,s=i.bottomY;this.y=(n+s)/2}else if(e.goal){this.x=this.boardWidth-r.boardGap-r.paddleWidth-this.radius;var o=e.coordinates(e.x,e.y,e.width,e.height),a=o.topY,h=o.bottomY;this.y=(a+h)/2}}},{key:"wallCollision",value:function(t,e){var i=this.x-this.radius<=0,n=this.x+this.radius>=this.boardWidth,s=this.y-this.radius<=0,r=this.y+this.radius>=this.boardHeight;i?(this.direction=-1,this.goal(e),this.pong.play(),this.resetAfterGoal(t,e)):n?(this.direction=1,this.goal(t),this.pong.play(),this.resetAfterGoal(t,e)):(s||r)&&(this.vy=-this.vy)}},{key:"paddleCollision",value:function(t,e){if(this.vx>0&&!t.goal){var i=e.coordinates(e.x,e.y,e.width,e.height),n=i.leftX,s=i.topY,r=i.bottomY;this.x+this.radius>=n&&this.y>=s&&this.y<=r&&(this.vx=-this.vx,this.ping.play())}else if(this.vx<0&&!e.goal){var o=t.coordinates(t.x,t.y,t.width,t.height),a=o.rightX,h=o.topY,l=o.bottomY;this.x-this.radius<=a&&this.y>=h&&this.y<=l&&(this.vx=-this.vx,this.ping.play())}}},{key:"fireShot",value:function(t,e){if(t.goal&&t.fireKeyPressed){for(;0===this.vy;)this.vy=Math.floor(10*Math.random()-5);this.vx=this.direction*(6-Math.abs(this.vy)),t.fireKeyPressed=!1,t.goal=!1}else if(e.goal&&e.fireKeyPressed){for(;0===this.vy;)this.vy=Math.floor(10*Math.random()-5);this.vx=this.direction*(6-Math.abs(this.vy)),e.fireKeyPressed=!1,e.goal=!1}else if(t.goal){this.vx=0,this.vy=0;var i=t.coordinates(t.x,t.y,t.width,t.height),n=i.topY,s=i.bottomY;this.y=(n+s)/2}else if(e.goal){this.vx=0,this.vy=0;var r=e.coordinates(e.x,e.y,e.width,e.height),o=r.topY,a=r.bottomY;this.y=(o+a)/2}}},{key:"goal",value:function(t){t.score++,t.goal=!0}},{key:"render",value:function(t,e,i){this.y=this.y+this.vy,this.x=this.x+this.vx,this.wallCollision(e,i),this.paddleCollision(e,i),this.fireShot(e,i);var n=document.createElementNS(r.SVG_NS,"circle");n.setAttributeNS(null,"r",this.radius),n.setAttributeNS(null,"cx",this.x),n.setAttributeNS(null,"cy",this.y),n.setAttributeNS(null,"fill","#ffffff"),t.appendChild(n)}}]),t}();e.default=o},function(t,e,i){"use strict";function n(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}Object.defineProperty(e,"__esModule",{value:!0});var s=function(){function t(t,e){for(var i=0;i<e.length;i++){var n=e[i];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(t,n.key,n)}}return function(e,i,n){return i&&t(e.prototype,i),n&&t(e,n),e}}(),r=i(0),o=function(){function t(e,i){n(this,t),this.width=e,this.height=i}return s(t,[{key:"render",value:function(t){var e=document.createElementNS(r.SVG_NS,"rect");e.setAttributeNS(null,"x","0"),e.setAttributeNS(null,"y","0"),e.setAttributeNS(null,"width",this.width),e.setAttributeNS(null,"height",this.height),e.setAttributeNS(null,"fill","#353535"),t.appendChild(e);var i=document.createElementNS(r.SVG_NS,"line");i.setAttributeNS(null,"x1",this.width/2),i.setAttributeNS(null,"x2",this.width/2),i.setAttributeNS(null,"y1",0),i.setAttributeNS(null,"y2",this.height),i.setAttributeNS(null,"stroke","#666600"),i.setAttributeNS(null,"stroke-dasharray","15,15"),i.setAttributeNS(null,"stroke-width","3"),t.appendChild(i)}}]),t}();e.default=o},function(t,e,i){"use strict";function n(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}Object.defineProperty(e,"__esModule",{value:!0});var s=function(){function t(t,e){for(var i=0;i<e.length;i++){var n=e[i];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(t,n.key,n)}}return function(e,i,n){return i&&t(e.prototype,i),n&&t(e,n),e}}(),r=i(0),o=function(){function t(e,i,s,o,a,h,l,d){var u=this;n(this,t),this.boardHeight=e,this.width=i,this.height=s,this.x=o,this.y=a,this.upKey=h,this.downKey=l,this.fireKey=d,this.upPressed=!1,this.downPressed=!1,this.fireKeyPressed=!1,this.speed=r.paddleSpeed,this.score=0,this.goal=!1,document.addEventListener("keydown",function(t){switch(t.preventDefault(),t.key){case u.upKey:u.upPressed=!0;break;case u.downKey:u.downPressed=!0;break;case u.fireKey:u.fireKeyPressed=!0}}),document.addEventListener("keyup",function(t){switch(t.preventDefault(),t.key){case u.upKey:u.upPressed=!1;break;case u.downKey:u.downPressed=!1}})}return s(t,[{key:"coordinates",value:function(t,e,i,n){return{leftX:t,rightX:t+i,topY:e,bottomY:e+n}}},{key:"up",value:function(){this.y=Math.max(this.y-this.speed,0)}},{key:"down",value:function(){this.y=Math.min(this.y+this.speed,this.boardHeight-this.height)}},{key:"render",value:function(t){var e=document.createElementNS(r.SVG_NS,"rect");e.setAttributeNS(null,"x",this.x),e.setAttributeNS(null,"y",this.y),e.setAttributeNS(null,"width",this.width),e.setAttributeNS(null,"height",this.height),e.setAttributeNS(null,"fill","#D3D3D3"),t.appendChild(e),this.upPressed&&this.up(),this.downPressed&&this.down()}}]),t}();e.default=o},function(t,e,i){"use strict";function n(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}Object.defineProperty(e,"__esModule",{value:!0});var s=function(){function t(t,e){for(var i=0;i<e.length;i++){var n=e[i];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(t,n.key,n)}}return function(e,i,n){return i&&t(e.prototype,i),n&&t(e,n),e}}(),r=i(0),o=function(){function t(e,i,s,r){n(this,t),this.x=e,this.y=i,this.size=s,this.center=r}return s(t,[{key:"render",value:function(t,e){var i=document.createElementNS(r.SVG_NS,"text");i.setAttributeNS(null,"x",this.x),i.setAttributeNS(null,"y",this.y),i.setAttributeNS(null,"font-family",'"Silkscreen Web", monotype'),i.setAttributeNS(null,"font-size",this.size),i.setAttributeNS(null,"fill","white"),i.setAttributeNS(null,"text-anchor",this.center),i.textContent=e,t.appendChild(i)}}]),t}();e.default=o},function(t,e,i){"use strict";function n(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}Object.defineProperty(e,"__esModule",{value:!0});var s=function(){function t(t,e){for(var i=0;i<e.length;i++){var n=e[i];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(t,n.key,n)}}return function(e,i,n){return i&&t(e.prototype,i),n&&t(e,n),e}}(),r=i(0),o=function(){function t(e,i,s){n(this,t),this.radius=e,this.boardWidth=i,this.boardHeight=s,this.direction=1,this.ping=new Audio("public/sounds/pong-03.wav"),this.reset()}return s(t,[{key:"reset",value:function(){for(this.direction=0;0===this.direction;)this.direction=Math.floor(3*Math.random())-1;for(this.x=r.boardGap+r.paddleWidth+this.radius+Math.random()*(this.boardWidth-2*r.boardGap-2*r.paddleWidth-2*this.radius),this.y=Math.random()*(this.boardHeight-2*this.radius)+this.radius,this.vy=0;0===this.vy;)this.vy=Math.floor(10*Math.random()-5);this.vx=this.direction*(6-Math.abs(this.vy))}},{key:"wallCollision",value:function(t,e){var i=this.x-this.radius<=0,n=this.x+this.radius>=this.boardWidth,s=this.y-this.radius<=0,r=this.y+this.radius>=this.boardHeight;i?(this.direction=-1,this.goal(e),this.reset()):n?(this.direction=1,this.goal(t),this.reset()):(s||r)&&(this.vy=-this.vy)}},{key:"paddleCollision",value:function(t,e){if(this.vx>0){var i=e.coordinates(e.x,e.y,e.width,e.height),n=i.leftX,s=i.topY,r=i.bottomY;this.x+this.radius>=n&&this.y>=s&&this.y<=r&&(this.vx=-this.vx,this.ping.play())}else{var o=t.coordinates(t.x,t.y,t.width,t.height),a=o.rightX,h=o.topY,l=o.bottomY;this.x-this.radius<=a&&this.y>=h&&this.y<=l&&(this.vx=-this.vx,this.ping.play())}}},{key:"goal",value:function(t){t.score++,t.goal=!0}},{key:"randomColor",value:function(){for(var t="#",e="0123456789ABCDEF".split(""),i=0;i<6;i++)t+=e[Math.floor(16*Math.random())];return t}},{key:"render",value:function(t,e,i){this.y=this.y+this.vy,this.x=this.x+this.vx;var n=document.createElementNS(r.SVG_NS,"circle");n.setAttributeNS(null,"r",this.radius),n.setAttributeNS(null,"cx",this.x),n.setAttributeNS(null,"cy",this.y),n.setAttributeNS(null,"fill",this.randomColor()),n.setAttributeNS(null,"id","trippingBall"),t.appendChild(n),this.wallCollision(e,i),this.paddleCollision(e,i)}}]),t}();e.default=o},function(t,e,i){e=t.exports=i(11)(),e.push([t.i,'a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,caption,center,cite,code,dd,del,details,dfn,div,dl,dt,em,embed,fieldset,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,html,i,iframe,img,ins,kbd,label,legend,li,mark,menu,nav,object,ol,output,p,pre,q,ruby,s,samp,section,small,span,strike,strong,sub,summary,sup,table,tbody,td,tfoot,th,thead,time,tr,tt,u,ul,var,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:after,blockquote:before,q:after,q:before{content:"";content:none}table{border-collapse:collapse;border-spacing:0}@font-face{font-family:Silkscreen Web;src:url('+i(1)+");src:url("+i(1)+'?#iefix) format("embedded-opentype"),url('+i(14)+') format("woff"),url('+i(13)+') format("truetype"),url('+i(12)+'#silkscreennormal) format("svg");font-weight:400;font-style:normal}html{font-size:16px}body{align-items:center;display:flex;font-family:Silkscreen Web,monotype;height:100vh;justify-content:center;width:100%}h1{font-size:2.5rem;margin-bottom:1rem;text-align:center}.text{display:none}#text{display:block;text-align:center;animation:tripping 1s ease-in-out infinite}@keyframes tripping{0%{font-size:1rem}50%{font-size:2.5rem}to{font-size:1rem}}',""])},function(t,e){t.exports=function(){var t=[];return t.toString=function(){for(var t=[],e=0;e<this.length;e++){var i=this[e];i[2]?t.push("@media "+i[2]+"{"+i[1]+"}"):t.push(i[1])}return t.join("")},t.i=function(e,i){"string"==typeof e&&(e=[[null,e,""]]);for(var n={},s=0;s<this.length;s++){var r=this[s][0];"number"==typeof r&&(n[r]=!0)}for(s=0;s<e.length;s++){var o=e[s];"number"==typeof o[0]&&n[o[0]]||(i&&!o[2]?o[2]=i:i&&(o[2]="("+o[2]+") and ("+i+")"),t.push(o))}},t}},function(t,e,i){t.exports=i.p+"public/fonts/slkscr-webfont.svg"},function(t,e,i){t.exports=i.p+"public/fonts/slkscr-webfont.ttf"},function(t,e,i){t.exports=i.p+"public/fonts/slkscr-webfont.woff"},function(t,e){function i(t,e){for(var i=0;i<t.length;i++){var n=t[i],s=f[n.id];if(s){s.refs++;for(var r=0;r<s.parts.length;r++)s.parts[r](n.parts[r]);for(;r<n.parts.length;r++)s.parts.push(h(n.parts[r],e))}else{for(var o=[],r=0;r<n.parts.length;r++)o.push(h(n.parts[r],e));f[n.id]={id:n.id,refs:1,parts:o}}}}function n(t){for(var e=[],i={},n=0;n<t.length;n++){var s=t[n],r=s[0],o=s[1],a=s[2],h=s[3],l={css:o,media:a,sourceMap:h};i[r]?i[r].parts.push(l):e.push(i[r]={id:r,parts:[l]})}return e}function s(t,e){var i=b(),n=g[g.length-1];if("top"===t.insertAt)n?n.nextSibling?i.insertBefore(e,n.nextSibling):i.appendChild(e):i.insertBefore(e,i.firstChild),g.push(e);else{if("bottom"!==t.insertAt)throw new Error("Invalid value for parameter 'insertAt'. Must be 'top' or 'bottom'.");i.appendChild(e)}}function r(t){t.parentNode.removeChild(t);var e=g.indexOf(t);e>=0&&g.splice(e,1)}function o(t){var e=document.createElement("style");return e.type="text/css",s(t,e),e}function a(t){var e=document.createElement("link");return e.rel="stylesheet",s(t,e),e}function h(t,e){var i,n,s;if(e.singleton){var h=v++;i=y||(y=o(e)),n=l.bind(null,i,h,!1),s=l.bind(null,i,h,!0)}else t.sourceMap&&"function"==typeof URL&&"function"==typeof URL.createObjectURL&&"function"==typeof URL.revokeObjectURL&&"function"==typeof Blob&&"function"==typeof btoa?(i=a(e),n=u.bind(null,i),s=function(){r(i),i.href&&URL.revokeObjectURL(i.href)}):(i=o(e),n=d.bind(null,i),s=function(){r(i)});return n(t),function(e){if(e){if(e.css===t.css&&e.media===t.media&&e.sourceMap===t.sourceMap)return;n(t=e)}else s()}}function l(t,e,i,n){var s=i?"":n.css;if(t.styleSheet)t.styleSheet.cssText=m(e,s);else{var r=document.createTextNode(s),o=t.childNodes;o[e]&&t.removeChild(o[e]),o.length?t.insertBefore(r,o[e]):t.appendChild(r)}}function d(t,e){var i=e.css,n=e.media;if(n&&t.setAttribute("media",n),t.styleSheet)t.styleSheet.cssText=i;else{for(;t.firstChild;)t.removeChild(t.firstChild);t.appendChild(document.createTextNode(i))}}function u(t,e){var i=e.css,n=e.sourceMap;n&&(i+="\n/*# sourceMappingURL=data:application/json;base64,"+btoa(unescape(encodeURIComponent(JSON.stringify(n))))+" */");var s=new Blob([i],{type:"text/css"}),r=t.href;t.href=URL.createObjectURL(s),r&&URL.revokeObjectURL(r)}var f={},c=function(t){var e;return function(){return void 0===e&&(e=t.apply(this,arguments)),e}},p=c(function(){return/msie [6-9]\b/.test(self.navigator.userAgent.toLowerCase())}),b=c(function(){return document.head||document.getElementsByTagName("head")[0]}),y=null,v=0,g=[];t.exports=function(t,e){if("undefined"!=typeof DEBUG&&DEBUG&&"object"!=typeof document)throw new Error("The style-loader cannot be used in a non-browser environment");e=e||{},void 0===e.singleton&&(e.singleton=p()),void 0===e.insertAt&&(e.insertAt="bottom");var s=n(t);return i(s,e),function(t){for(var r=[],o=0;o<s.length;o++){var a=s[o],h=f[a.id];h.refs--,r.push(h)}if(t){i(n(t),e)}for(var o=0;o<r.length;o++){var h=r[o];if(0===h.refs){for(var l=0;l<h.parts.length;l++)h.parts[l]();delete f[h.id]}}}};var m=function(){var t=[];return function(e,i){return t[e]=i,t.filter(Boolean).join("\n")}}()}]);
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// identity function for calling harmony imports with the correct context
+/******/ 	__webpack_require__.i = function(value) { return value; };
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, {
+/******/ 				configurable: false,
+/******/ 				enumerable: true,
+/******/ 				get: getter
+/******/ 			});
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var SVG_NS = exports.SVG_NS = 'http://www.w3.org/2000/svg';
+
+var boardGap = exports.boardGap = 10;
+var paddleWidth = exports.paddleWidth = 8;
+var paddleHeight = exports.paddleHeight = 56;
+var paddleSpeed = exports.paddleSpeed = 5;
+var ballRadius = exports.ballRadius = 8;
+
+var KEYS = exports.KEYS = {
+  a: 'a', // player 1 up key
+  z: 'z', // player 1 down key
+  f: 'f', // player 1 fire shot key
+  up: 'ArrowUp', // player 2 up key
+  down: 'ArrowDown', // player 2 down key
+  enter: 'Enter', //player 2 fire shot key
+  spaceBar: ' ' // we'll use this later...
+};
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "public/fonts/slkscr-webfont.eot";
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _settings = __webpack_require__(0);
+
+var _Board = __webpack_require__(6);
+
+var _Board2 = _interopRequireDefault(_Board);
+
+var _Paddle = __webpack_require__(7);
+
+var _Paddle2 = _interopRequireDefault(_Paddle);
+
+var _Ball = __webpack_require__(5);
+
+var _Ball2 = _interopRequireDefault(_Ball);
+
+var _Score = __webpack_require__(8);
+
+var _Score2 = _interopRequireDefault(_Score);
+
+var _TrippingBall = __webpack_require__(9);
+
+var _TrippingBall2 = _interopRequireDefault(_TrippingBall);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Game = function () {
+	function Game(element, width, height) {
+		var _this = this;
+
+		_classCallCheck(this, Game);
+
+		this.element = element;
+		this.width = width;
+		this.height = height;
+		this.boardGap = _settings.boardGap;
+		this.paddleWidth = _settings.paddleWidth;
+		this.paddleHeight = _settings.paddleHeight;
+		this.ballRadius = _settings.ballRadius;
+		this.pause = 0;
+
+		//GRAB THE #GAME ELEMENT IN HTML
+		this.gameElement = document.getElementById(this.element);
+
+		//INSTANTIATE OBJECTS FROM EACH CLASS ACCORDINGLY
+		this.board = new _Board2.default(this.width, this.height);
+
+		this.ball = new _Ball2.default(this.ballRadius, this.width, this.height);
+
+		this.trippingball1 = new _TrippingBall2.default(this.ballRadius * 2, this.width, this.height);
+		this.trippingball2 = new _TrippingBall2.default(this.ballRadius * 0.7, this.width, this.height);
+		this.trippingball3 = new _TrippingBall2.default(this.ballRadius * 1.2, this.width, this.height);
+		this.trippingball4 = new _TrippingBall2.default(this.ballRadius * 2.5, this.width, this.height);
+		this.trippingball5 = new _TrippingBall2.default(this.ballRadius, this.width, this.height);
+		this.trippingball6 = new _TrippingBall2.default(this.ballRadius * 3, this.width, this.height);
+		this.trippingball7 = new _TrippingBall2.default(this.ballRadius * 3.5, this.width, this.height);
+
+		this.paddleOne = new _Paddle2.default(this.height, this.paddleWidth, this.paddleHeight, this.boardGap, (this.height - this.paddleHeight) / 2, _settings.KEYS.a, _settings.KEYS.z, _settings.KEYS.f);
+
+		this.paddleTwo = new _Paddle2.default(this.height, this.paddleWidth, this.paddleHeight, this.width - this.boardGap - this.paddleWidth, (this.height - this.paddleHeight) / 2, _settings.KEYS.up, _settings.KEYS.down, _settings.KEYS.enter);
+
+		this.scoreOne = new _Score2.default(this.width / 2 - 20, 30, 30, 'end');
+		this.scoreTwo = new _Score2.default(this.width / 2 + 20, 30, 30, 'start');
+
+		//ADD EVENTLISTENER FOR PAUSING THE GAME USING SPACE BAR
+		document.addEventListener('keydown', function (event) {
+			if (event.key === _settings.KEYS.spaceBar) {
+				_this.pause = !_this.pause;
+			}
+		});
+	}
+
+	_createClass(Game, [{
+		key: 'render',
+		value: function render() {
+			if (this.pause) {
+				return;
+			}
+
+			this.gameElement.innerHTML = '';
+
+			var svg = document.createElementNS(_settings.SVG_NS, 'svg');
+			svg.setAttributeNS(null, 'width', this.width);
+			svg.setAttributeNS(null, 'height', this.height);
+			svg.setAttributeNS(null, 'viewbox', '0 0 ' + this.width + ' ' + this.height);
+			svg.setAttributeNS(null, 'version', '1.1');
+
+			this.gameElement.appendChild(svg);
+
+			this.board.render(svg);
+
+			this.paddleOne.render(svg);
+			this.paddleTwo.render(svg);
+
+			//AFTER EITHER GOAL REACHES 5, 7 TRIPPING BALLS ARE TRIGGERED, APPEARING RANDOMLY ON THE GAME BOARD
+			if (this.paddleOne.score < 5 && this.paddleTwo.score < 5) {
+				this.ball.render(svg, this.paddleOne, this.paddleTwo);
+			} else {
+				this.trippingball1.render(svg, this.paddleOne, this.paddleTwo);
+				this.trippingball2.render(svg, this.paddleOne, this.paddleTwo);
+				this.trippingball3.render(svg, this.paddleOne, this.paddleTwo);
+				this.trippingball4.render(svg, this.paddleOne, this.paddleTwo);
+				this.trippingball5.render(svg, this.paddleOne, this.paddleTwo);
+				this.trippingball6.render(svg, this.paddleOne, this.paddleTwo);
+				this.trippingball7.render(svg, this.paddleOne, this.paddleTwo);
+
+				//ANIMATE TEXT AND CHANGE BACKGROUND COLOR WHEN TRIPPING BALLS ARE TRIGGERED
+				document.getElementsByClassName('text')[0].setAttribute('id', 'text');
+				document.querySelector('body').setAttribute('style', 'background: #6b8e23');
+			}
+
+			this.scoreOne.render(svg, this.paddleOne.score);
+			this.scoreTwo.render(svg, this.paddleTwo.score);
+		}
+	}]);
+
+	return Game;
+}();
+
+exports.default = Game;
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(10);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// add the styles to the DOM
+var update = __webpack_require__(15)(content, {});
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../node_modules/css-loader/index.js!./game.css", function() {
+			var newContent = require("!!../../node_modules/css-loader/index.js!./game.css");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+__webpack_require__(3);
+
+var _Game = __webpack_require__(2);
+
+var _Game2 = _interopRequireDefault(_Game);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// create a game instance
+var game = new _Game2.default('game', 512, 256);
+
+(function gameLoop() {
+    //infinite gameloop
+    game.render();
+    requestAnimationFrame(gameLoop);
+})();
+
+var music = new Audio('public/sounds/the-warden-maceo-plex-clipped.mp3');
+music.play();
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _settings = __webpack_require__(0);
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Ball = function () {
+  function Ball(radius, boardWidth, boardHeight) {
+    _classCallCheck(this, Ball);
+
+    this.radius = radius;
+    this.boardWidth = boardWidth;
+    this.boardHeight = boardHeight;
+    this.direction = 1;
+    this.ping = new Audio('public/sounds/pong-03.wav');
+    this.pong = new Audio('public/sounds/pong-04.wav');
+
+    this.reset();
+  }
+
+  _createClass(Ball, [{
+    key: 'reset',
+    value: function reset() {
+      this.x = this.boardWidth / 2;
+      this.y = this.boardHeight / 2;
+
+      //GENERATE RANDOM SPEED FOR THE BALL - VX & VY
+      //vy random number b/w (-5, 5)
+      this.vy = 0;
+      while (this.vy === 0) {
+        this.vy = Math.floor(Math.random() * 10 - 5);
+      }
+      //set vx accordingly, use 6 to avoide vx being 0
+      this.vx = this.direction * (6 - Math.abs(this.vy));
+    }
+
+    //METHOD TO RESET THE BALL AT WINNER'S SIDE OF THE PADDLE
+
+  }, {
+    key: 'resetAfterGoal',
+    value: function resetAfterGoal(paddle1, paddle2) {
+      if (paddle1.goal) {
+        this.x = _settings.boardGap + _settings.paddleWidth + this.radius;
+        //calling coordinates method in paddle class to get the current y position of the paddle
+        var paddle = paddle1.coordinates(paddle1.x, paddle1.y, paddle1.width, paddle1.height);
+        var topY = paddle.topY,
+            bottomY = paddle.bottomY;
+
+        this.y = (topY + bottomY) / 2;
+      } else if (paddle2.goal) {
+        this.x = this.boardWidth - _settings.boardGap - _settings.paddleWidth - this.radius;
+        var _paddle = paddle2.coordinates(paddle2.x, paddle2.y, paddle2.width, paddle2.height);
+        var _topY = _paddle.topY,
+            _bottomY = _paddle.bottomY;
+
+        this.y = (_topY + _bottomY) / 2;
+      }
+    }
+
+    //METHOD FOR WALL COLLISION OF THE BALL, WITH GOAL CALCULATION AND BALL POSITION RESET AFTER GOAL
+
+  }, {
+    key: 'wallCollision',
+    value: function wallCollision(paddle1, paddle2) {
+      var hitLeft = this.x - this.radius <= 0;
+      var hitRight = this.x + this.radius >= this.boardWidth;
+      var hitTop = this.y - this.radius <= 0;
+      var hitBottom = this.y + this.radius >= this.boardHeight;
+
+      if (hitLeft) {
+        this.direction = -1;
+        this.goal(paddle2);
+        this.pong.play();
+
+        this.resetAfterGoal(paddle1, paddle2);
+      } else if (hitRight) {
+        this.direction = 1;
+        this.goal(paddle1);
+        this.pong.play();
+
+        this.resetAfterGoal(paddle1, paddle2);
+      } else if (hitTop || hitBottom) {
+        this.vy = -this.vy;
+      }
+    }
+
+    //METHOD FOR PADDLE COLLISION DETECTION
+    //fixed the bug that when ball resets at the edge of paddle, ball keeps bouncing
+
+  }, {
+    key: 'paddleCollision',
+    value: function paddleCollision(paddle1, paddle2) {
+      if (this.vx > 0 && !paddle1.goal) {
+
+        // detect paddle collision on the right side (paddle2)
+        var paddle = paddle2.coordinates(paddle2.x, paddle2.y, paddle2.width, paddle2.height);
+        var leftX = paddle.leftX,
+            topY = paddle.topY,
+            bottomY = paddle.bottomY;
+
+
+        if (this.x + this.radius >= leftX && this.y >= topY && this.y <= bottomY) {
+          this.vx = -this.vx;
+          this.ping.play();
+        }
+      } else if (this.vx < 0 && !paddle2.goal) {
+        //detect paddle collision on the left side (paddle1)
+        var _paddle2 = paddle1.coordinates(paddle1.x, paddle1.y, paddle1.width, paddle1.height);
+        var rightX = _paddle2.rightX,
+            _topY2 = _paddle2.topY,
+            _bottomY2 = _paddle2.bottomY; //let variables only exist within this block
+
+        if (this.x - this.radius <= rightX && this.y >= _topY2 && this.y <= _bottomY2) {
+          this.vx = -this.vx;
+          this.ping.play();
+        }
+      }
+    }
+
+    //METHOD FOR FIRING THE BALL WHEN FIREKEY PRESSED
+
+  }, {
+    key: 'fireShot',
+    value: function fireShot(paddle1, paddle2) {
+      //generate speed when there's a goal on either side
+      if (paddle1.goal && paddle1.fireKeyPressed) {
+
+        while (this.vy === 0) {
+          this.vy = Math.floor(Math.random() * 10 - 5);
+        }
+        //set vx accordingly, use 6 to avoide vx being 0
+        this.vx = this.direction * (6 - Math.abs(this.vy));
+
+        paddle1.fireKeyPressed = false;
+        paddle1.goal = false;
+      } else if (paddle2.goal && paddle2.fireKeyPressed) {
+        while (this.vy === 0) {
+          this.vy = Math.floor(Math.random() * 10 - 5);
+        }
+        //set vx accordingly, use 6 to avoide vx being 0
+        this.vx = this.direction * (6 - Math.abs(this.vy));
+
+        paddle2.fireKeyPressed = false;
+        paddle2.goal = false;
+      }
+      //moves the ball along with the paddle, yet with no bouncing until firekey is pressed
+      else if (paddle1.goal) {
+
+          this.vx = 0;
+          this.vy = 0;
+
+          var paddle = paddle1.coordinates(paddle1.x, paddle1.y, paddle1.width, paddle1.height);
+          var topY = paddle.topY,
+              bottomY = paddle.bottomY;
+
+          this.y = (topY + bottomY) / 2;
+        } else if (paddle2.goal) {
+          this.vx = 0;
+          this.vy = 0;
+
+          var _paddle3 = paddle2.coordinates(paddle2.x, paddle2.y, paddle2.width, paddle2.height);
+          var _topY3 = _paddle3.topY,
+              _bottomY3 = _paddle3.bottomY;
+
+          this.y = (_topY3 + _bottomY3) / 2;
+        }
+    }
+
+    //METHOD FOR COUNTING GOAL FOR THE PADDLE
+
+  }, {
+    key: 'goal',
+    value: function goal(paddle) {
+      paddle.score++;
+      paddle.goal = true;
+    }
+  }, {
+    key: 'render',
+    value: function render(svg, paddle1, paddle2) {
+      this.y = this.y + this.vy;
+      this.x = this.x + this.vx;
+
+      this.wallCollision(paddle1, paddle2);
+      this.paddleCollision(paddle1, paddle2);
+      this.fireShot(paddle1, paddle2);
+
+      var circle = document.createElementNS(_settings.SVG_NS, 'circle');
+
+      circle.setAttributeNS(null, 'r', this.radius);
+      circle.setAttributeNS(null, 'cx', this.x);
+      circle.setAttributeNS(null, 'cy', this.y);
+      circle.setAttributeNS(null, 'fill', '#ffffff');
+
+      svg.appendChild(circle);
+    }
+  }]);
+
+  return Ball;
+}();
+
+exports.default = Ball;
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _settings = __webpack_require__(0);
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Board = function () {
+  function Board(width, height) {
+    _classCallCheck(this, Board);
+
+    this.width = width;
+    this.height = height;
+  }
+
+  _createClass(Board, [{
+    key: 'render',
+    value: function render(svg) {
+      var rect = document.createElementNS(_settings.SVG_NS, 'rect');
+
+      rect.setAttributeNS(null, 'x', '0');
+      rect.setAttributeNS(null, 'y', '0');
+      rect.setAttributeNS(null, 'width', this.width);
+      rect.setAttributeNS(null, 'height', this.height);
+      rect.setAttributeNS(null, 'fill', '#353535');
+      svg.appendChild(rect);
+
+      var line = document.createElementNS(_settings.SVG_NS, 'line');
+
+      line.setAttributeNS(null, 'x1', this.width / 2);
+      line.setAttributeNS(null, 'x2', this.width / 2);
+      line.setAttributeNS(null, 'y1', 0);
+      line.setAttributeNS(null, 'y2', this.height);
+      line.setAttributeNS(null, 'stroke', '#666600');
+      line.setAttributeNS(null, 'stroke-dasharray', '15,15');
+      line.setAttributeNS(null, 'stroke-width', '3');
+
+      svg.appendChild(line);
+    }
+  }]);
+
+  return Board;
+}();
+
+exports.default = Board;
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _settings = __webpack_require__(0);
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Paddle = function () {
+  function Paddle(boardHeight, width, height, x, y, upKey, downKey, fireKey) {
+    var _this = this;
+
+    _classCallCheck(this, Paddle);
+
+    this.boardHeight = boardHeight;
+    this.width = width;
+    this.height = height;
+    this.x = x;
+    this.y = y;
+    this.upKey = upKey;
+    this.downKey = downKey;
+    this.fireKey = fireKey;
+
+    this.upPressed = false;
+    this.downPressed = false;
+    this.fireKeyPressed = false;
+
+    this.speed = _settings.paddleSpeed; //paddle moving speed
+    this.score = 0; //property for keeping score of the paddle
+    this.goal = false; //property for goal detection 
+
+
+    //EVENTLISTENER FOR PADDLE MOVEMENT CONTROL AND FIRE SHOT CONTROL
+    //jquery equivelant of .on
+    document.addEventListener('keydown', function (event) {
+      //key pressed listner
+      event.preventDefault();
+      switch (event.key) {
+        case _this.upKey:
+          _this.upPressed = true;
+          break;
+        case _this.downKey:
+          _this.downPressed = true;
+          break;
+        case _this.fireKey:
+          _this.fireKeyPressed = true;
+      }
+    });
+
+    document.addEventListener('keyup', function (event) {
+      //key pressed listner
+      event.preventDefault();
+      switch (event.key) {
+        case _this.upKey:
+          _this.upPressed = false;
+          break;
+        case _this.downKey:
+          _this.downPressed = false;
+          break;
+      }
+    });
+  }
+
+  //METHOD TO CALCULATE COORDINATES OF 4 EDGES OF THE PADDLE
+
+
+  _createClass(Paddle, [{
+    key: 'coordinates',
+    value: function coordinates(x, y, width, height) {
+      var leftX = x;
+      var rightX = x + width;
+      var topY = y;
+      var bottomY = y + height;
+      return { leftX: leftX, rightX: rightX, topY: topY, bottomY: bottomY };
+    }
+
+    //METHOD FOR PADDLE  UP MOVEMENT WITHIN BOUNDARIES
+
+  }, {
+    key: 'up',
+    value: function up() {
+      //get max number
+      //either 0 or the y position of the paddle
+      this.y = Math.max(this.y - this.speed, 0);
+    }
+    //METHOD FOR PADDLE DOWN MOVEMENT WITHIN BOUNDARIES
+
+  }, {
+    key: 'down',
+    value: function down() {
+      //get the min number
+      //either height of the board minus the height of the paddle or the y position plus the speed
+      this.y = Math.min(this.y + this.speed, this.boardHeight - this.height);
+    }
+  }, {
+    key: 'render',
+    value: function render(svg) {
+      var rect = document.createElementNS(_settings.SVG_NS, 'rect');
+
+      rect.setAttributeNS(null, 'x', this.x);
+      rect.setAttributeNS(null, 'y', this.y);
+      rect.setAttributeNS(null, 'width', this.width);
+      rect.setAttributeNS(null, 'height', this.height);
+      rect.setAttributeNS(null, 'fill', '#D3D3D3');
+      svg.appendChild(rect);
+
+      //ACHIEVING PADDLE SMOOTH MOVEMENT USING KEYUP & KEYDOWN
+      if (this.upPressed) {
+        this.up();
+      }
+      if (this.downPressed) {
+        this.down();
+      }
+    }
+  }]);
+
+  return Paddle;
+}();
+
+exports.default = Paddle;
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _settings = __webpack_require__(0);
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Score = function () {
+  function Score(x, y, size, center) {
+    _classCallCheck(this, Score);
+
+    this.x = x;
+    this.y = y;
+    this.size = size;
+    this.center = center;
+  }
+
+  _createClass(Score, [{
+    key: 'render',
+    value: function render(svg, score) {
+
+      var text = document.createElementNS(_settings.SVG_NS, 'text');
+
+      text.setAttributeNS(null, 'x', this.x);
+      text.setAttributeNS(null, 'y', this.y);
+      text.setAttributeNS(null, 'font-family', '"Silkscreen Web", monotype');
+      text.setAttributeNS(null, 'font-size', this.size);
+      text.setAttributeNS(null, 'fill', 'white');
+      //center score using text-anchor attribute
+      text.setAttributeNS(null, 'text-anchor', this.center);
+      text.textContent = score;
+
+      svg.appendChild(text);
+    }
+  }]);
+
+  return Score;
+}();
+
+exports.default = Score;
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _settings = __webpack_require__(0);
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+//SIMILAR CLASS AS IN BALL.JS BUT WITH A FEW TWEAKS FOR RESET AND RANDOM COLOR METHOD
+var TrippingBall = function () {
+  function TrippingBall(radius, boardWidth, boardHeight) {
+    _classCallCheck(this, TrippingBall);
+
+    this.radius = radius;
+    this.boardWidth = boardWidth;
+    this.boardHeight = boardHeight;
+    this.direction = 1;
+    this.ping = new Audio('public/sounds/pong-03.wav');
+
+    this.reset();
+  }
+
+  _createClass(TrippingBall, [{
+    key: 'reset',
+    value: function reset() {
+      //GENERATE RANDOM DIRECTION (-1 OR 1) TRIPPING BALL
+      this.direction = 0;
+      while (this.direction === 0) {
+        this.direction = Math.floor(Math.random() * 3) - 1;
+      }
+      //GENERATE RANDOM APPEARING LOCATION OF THE TRIPPING BALL
+      this.x = _settings.boardGap + _settings.paddleWidth + this.radius + Math.random() * (this.boardWidth - 2 * _settings.boardGap - 2 * _settings.paddleWidth - 2 * this.radius);
+      this.y = Math.random() * (this.boardHeight - 2 * this.radius) + this.radius;
+
+      //GENERATE RANDOM SPEED OF VX & VY
+      //vy random number b/w (-5, 5)
+      this.vy = 0;
+      while (this.vy === 0) {
+        this.vy = Math.floor(Math.random() * 10 - 5);
+      }
+      //set vx accordingly, use 6 to avoide vx being 0
+      this.vx = this.direction * (6 - Math.abs(this.vy));
+    }
+  }, {
+    key: 'wallCollision',
+    value: function wallCollision(paddle1, paddle2) {
+      var hitLeft = this.x - this.radius <= 0;
+      var hitRight = this.x + this.radius >= this.boardWidth;
+      var hitTop = this.y - this.radius <= 0;
+      var hitBottom = this.y + this.radius >= this.boardHeight;
+
+      if (hitLeft) {
+        this.direction = -1;
+        this.goal(paddle2);
+        this.reset();
+      } else if (hitRight) {
+        this.direction = 1;
+        this.goal(paddle1);
+        this.reset();
+      } else if (hitTop || hitBottom) {
+        this.vy = -this.vy;
+      }
+    }
+  }, {
+    key: 'paddleCollision',
+    value: function paddleCollision(paddle1, paddle2) {
+      if (this.vx > 0) {
+
+        // detect paddle collision on the right side (paddle2)
+        var paddle = paddle2.coordinates(paddle2.x, paddle2.y, paddle2.width, paddle2.height);
+        var leftX = paddle.leftX,
+            topY = paddle.topY,
+            bottomY = paddle.bottomY;
+
+
+        if (this.x + this.radius >= leftX && this.y >= topY && this.y <= bottomY) {
+          this.vx = -this.vx;
+          this.ping.play();
+        }
+      } else {
+        //detect paddle collision on the left side (paddle1)
+        var _paddle = paddle1.coordinates(paddle1.x, paddle1.y, paddle1.width, paddle1.height);
+        var rightX = _paddle.rightX,
+            _topY = _paddle.topY,
+            _bottomY = _paddle.bottomY; //let variables only exist within this block
+
+        if (this.x - this.radius <= rightX && this.y >= _topY && this.y <= _bottomY) {
+          this.vx = -this.vx;
+          this.ping.play();
+        }
+      }
+    }
+  }, {
+    key: 'goal',
+    value: function goal(paddle) {
+      paddle.score++;
+      paddle.goal = true;
+    }
+
+    //GENERATE RANDOM COLORS FOR THE TRIPPING BALL
+
+  }, {
+    key: 'randomColor',
+    value: function randomColor() {
+      var color = '#',
+          chars = '0123456789ABCDEF'.split('');
+      for (var i = 0; i < 6; i++) {
+        color += chars[Math.floor(Math.random() * 16)];
+      }
+
+      return color;
+    }
+  }, {
+    key: 'render',
+    value: function render(svg, paddle1, paddle2) {
+      this.y = this.y + this.vy;
+      this.x = this.x + this.vx;
+
+      var circle = document.createElementNS(_settings.SVG_NS, 'circle');
+      circle.setAttributeNS(null, 'r', this.radius);
+      circle.setAttributeNS(null, 'cx', this.x);
+      circle.setAttributeNS(null, 'cy', this.y);
+      circle.setAttributeNS(null, 'fill', this.randomColor());
+      circle.setAttributeNS(null, 'id', 'trippingBall');
+
+      svg.appendChild(circle);
+
+      this.wallCollision(paddle1, paddle2);
+      this.paddleCollision(paddle1, paddle2);
+    }
+  }]);
+
+  return TrippingBall;
+}();
+
+exports.default = TrippingBall;
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(11)();
+// imports
+
+
+// module
+exports.push([module.i, "/* http://meyerweb.com/eric/tools/css/reset/ \n   v2.0 | 20110126\n   License: none (public domain)\n*/\n\nhtml, body, div, span, applet, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\na, abbr, acronym, address, big, cite, code,\ndel, dfn, em, img, ins, kbd, q, s, samp,\nsmall, strike, strong, sub, sup, tt, var,\nb, u, i, center,\ndl, dt, dd, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed, \nfigure, figcaption, footer, header, hgroup, \nmenu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n\tmargin: 0;\n\tpadding: 0;\n\tborder: 0;\n\tfont-size: 100%;\n\tfont: inherit;\n\tvertical-align: baseline;\n}\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure, \nfooter, header, hgroup, menu, nav, section {\n\tdisplay: block;\n}\nbody {\n\tline-height: 1;\n}\nol, ul {\n\tlist-style: none;\n}\nblockquote, q {\n\tquotes: none;\n}\nblockquote:before, blockquote:after,\nq:before, q:after {\n\tcontent: '';\n\tcontent: none;\n}\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n\n/**\n * FONTS\n */\n\n@font-face {\n  font-family: 'Silkscreen Web';\n  src: url(" + __webpack_require__(1) + ");\n  src: url(" + __webpack_require__(1) + "?#iefix) format('embedded-opentype'),\n    url(" + __webpack_require__(14) + ") format('woff'),\n    url(" + __webpack_require__(13) + ") format('truetype'),\n    url(" + __webpack_require__(12) + "#silkscreennormal) format('svg');\n  font-weight: normal;\n  font-style: normal;\n}\n\n/**\n * GAME\n */\n\nhtml {\n  font-size: 16px;\n}\n\nbody {\n  align-items: center;\n  display: flex;\n  font-family: 'Silkscreen Web', monotype;\n  height: 100vh;\n  justify-content: center;\n  width: 100%;\n}\n\nh1 {\n  font-size: 2.5rem;\n  margin-bottom: 1rem; \n  text-align: center;\n}\n/* TEXT ANIMATION CSS BELOW */\n.text{\n  display: none;\n}\n#text{\n  display: block;\n  text-align: center;\n  animation: tripping 1s ease-in-out infinite;\n}\n\n@keyframes tripping{\n  0%{\n    font-size: 1rem;\n  }\n  50%{\n    font-size: 2.5rem;\n  }\n  100%{\n    font-size: 1rem;\n  }\n}", ""]);
+
+// exports
+
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function() {
+	var list = [];
+
+	// return the list of modules as css string
+	list.toString = function toString() {
+		var result = [];
+		for(var i = 0; i < this.length; i++) {
+			var item = this[i];
+			if(item[2]) {
+				result.push("@media " + item[2] + "{" + item[1] + "}");
+			} else {
+				result.push(item[1]);
+			}
+		}
+		return result.join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function(modules, mediaQuery) {
+		if(typeof modules === "string")
+			modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for(var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if(typeof id === "number")
+				alreadyImportedModules[id] = true;
+		}
+		for(i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if(mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if(mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
+
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "public/fonts/slkscr-webfont.svg";
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "public/fonts/slkscr-webfont.ttf";
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "public/fonts/slkscr-webfont.woff";
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+var stylesInDom = {},
+	memoize = function(fn) {
+		var memo;
+		return function () {
+			if (typeof memo === "undefined") memo = fn.apply(this, arguments);
+			return memo;
+		};
+	},
+	isOldIE = memoize(function() {
+		return /msie [6-9]\b/.test(self.navigator.userAgent.toLowerCase());
+	}),
+	getHeadElement = memoize(function () {
+		return document.head || document.getElementsByTagName("head")[0];
+	}),
+	singletonElement = null,
+	singletonCounter = 0,
+	styleElementsInsertedAtTop = [];
+
+module.exports = function(list, options) {
+	if(typeof DEBUG !== "undefined" && DEBUG) {
+		if(typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
+	}
+
+	options = options || {};
+	// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+	// tags it will allow on a page
+	if (typeof options.singleton === "undefined") options.singleton = isOldIE();
+
+	// By default, add <style> tags to the bottom of <head>.
+	if (typeof options.insertAt === "undefined") options.insertAt = "bottom";
+
+	var styles = listToStyles(list);
+	addStylesToDom(styles, options);
+
+	return function update(newList) {
+		var mayRemove = [];
+		for(var i = 0; i < styles.length; i++) {
+			var item = styles[i];
+			var domStyle = stylesInDom[item.id];
+			domStyle.refs--;
+			mayRemove.push(domStyle);
+		}
+		if(newList) {
+			var newStyles = listToStyles(newList);
+			addStylesToDom(newStyles, options);
+		}
+		for(var i = 0; i < mayRemove.length; i++) {
+			var domStyle = mayRemove[i];
+			if(domStyle.refs === 0) {
+				for(var j = 0; j < domStyle.parts.length; j++)
+					domStyle.parts[j]();
+				delete stylesInDom[domStyle.id];
+			}
+		}
+	};
+}
+
+function addStylesToDom(styles, options) {
+	for(var i = 0; i < styles.length; i++) {
+		var item = styles[i];
+		var domStyle = stylesInDom[item.id];
+		if(domStyle) {
+			domStyle.refs++;
+			for(var j = 0; j < domStyle.parts.length; j++) {
+				domStyle.parts[j](item.parts[j]);
+			}
+			for(; j < item.parts.length; j++) {
+				domStyle.parts.push(addStyle(item.parts[j], options));
+			}
+		} else {
+			var parts = [];
+			for(var j = 0; j < item.parts.length; j++) {
+				parts.push(addStyle(item.parts[j], options));
+			}
+			stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
+		}
+	}
+}
+
+function listToStyles(list) {
+	var styles = [];
+	var newStyles = {};
+	for(var i = 0; i < list.length; i++) {
+		var item = list[i];
+		var id = item[0];
+		var css = item[1];
+		var media = item[2];
+		var sourceMap = item[3];
+		var part = {css: css, media: media, sourceMap: sourceMap};
+		if(!newStyles[id])
+			styles.push(newStyles[id] = {id: id, parts: [part]});
+		else
+			newStyles[id].parts.push(part);
+	}
+	return styles;
+}
+
+function insertStyleElement(options, styleElement) {
+	var head = getHeadElement();
+	var lastStyleElementInsertedAtTop = styleElementsInsertedAtTop[styleElementsInsertedAtTop.length - 1];
+	if (options.insertAt === "top") {
+		if(!lastStyleElementInsertedAtTop) {
+			head.insertBefore(styleElement, head.firstChild);
+		} else if(lastStyleElementInsertedAtTop.nextSibling) {
+			head.insertBefore(styleElement, lastStyleElementInsertedAtTop.nextSibling);
+		} else {
+			head.appendChild(styleElement);
+		}
+		styleElementsInsertedAtTop.push(styleElement);
+	} else if (options.insertAt === "bottom") {
+		head.appendChild(styleElement);
+	} else {
+		throw new Error("Invalid value for parameter 'insertAt'. Must be 'top' or 'bottom'.");
+	}
+}
+
+function removeStyleElement(styleElement) {
+	styleElement.parentNode.removeChild(styleElement);
+	var idx = styleElementsInsertedAtTop.indexOf(styleElement);
+	if(idx >= 0) {
+		styleElementsInsertedAtTop.splice(idx, 1);
+	}
+}
+
+function createStyleElement(options) {
+	var styleElement = document.createElement("style");
+	styleElement.type = "text/css";
+	insertStyleElement(options, styleElement);
+	return styleElement;
+}
+
+function createLinkElement(options) {
+	var linkElement = document.createElement("link");
+	linkElement.rel = "stylesheet";
+	insertStyleElement(options, linkElement);
+	return linkElement;
+}
+
+function addStyle(obj, options) {
+	var styleElement, update, remove;
+
+	if (options.singleton) {
+		var styleIndex = singletonCounter++;
+		styleElement = singletonElement || (singletonElement = createStyleElement(options));
+		update = applyToSingletonTag.bind(null, styleElement, styleIndex, false);
+		remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true);
+	} else if(obj.sourceMap &&
+		typeof URL === "function" &&
+		typeof URL.createObjectURL === "function" &&
+		typeof URL.revokeObjectURL === "function" &&
+		typeof Blob === "function" &&
+		typeof btoa === "function") {
+		styleElement = createLinkElement(options);
+		update = updateLink.bind(null, styleElement);
+		remove = function() {
+			removeStyleElement(styleElement);
+			if(styleElement.href)
+				URL.revokeObjectURL(styleElement.href);
+		};
+	} else {
+		styleElement = createStyleElement(options);
+		update = applyToTag.bind(null, styleElement);
+		remove = function() {
+			removeStyleElement(styleElement);
+		};
+	}
+
+	update(obj);
+
+	return function updateStyle(newObj) {
+		if(newObj) {
+			if(newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap)
+				return;
+			update(obj = newObj);
+		} else {
+			remove();
+		}
+	};
+}
+
+var replaceText = (function () {
+	var textStore = [];
+
+	return function (index, replacement) {
+		textStore[index] = replacement;
+		return textStore.filter(Boolean).join('\n');
+	};
+})();
+
+function applyToSingletonTag(styleElement, index, remove, obj) {
+	var css = remove ? "" : obj.css;
+
+	if (styleElement.styleSheet) {
+		styleElement.styleSheet.cssText = replaceText(index, css);
+	} else {
+		var cssNode = document.createTextNode(css);
+		var childNodes = styleElement.childNodes;
+		if (childNodes[index]) styleElement.removeChild(childNodes[index]);
+		if (childNodes.length) {
+			styleElement.insertBefore(cssNode, childNodes[index]);
+		} else {
+			styleElement.appendChild(cssNode);
+		}
+	}
+}
+
+function applyToTag(styleElement, obj) {
+	var css = obj.css;
+	var media = obj.media;
+
+	if(media) {
+		styleElement.setAttribute("media", media)
+	}
+
+	if(styleElement.styleSheet) {
+		styleElement.styleSheet.cssText = css;
+	} else {
+		while(styleElement.firstChild) {
+			styleElement.removeChild(styleElement.firstChild);
+		}
+		styleElement.appendChild(document.createTextNode(css));
+	}
+}
+
+function updateLink(linkElement, obj) {
+	var css = obj.css;
+	var sourceMap = obj.sourceMap;
+
+	if(sourceMap) {
+		// http://stackoverflow.com/a/26603875
+		css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
+	}
+
+	var blob = new Blob([css], { type: "text/css" });
+
+	var oldSrc = linkElement.href;
+
+	linkElement.href = URL.createObjectURL(blob);
+
+	if(oldSrc)
+		URL.revokeObjectURL(oldSrc);
+}
+
+
+/***/ })
+/******/ ]);
