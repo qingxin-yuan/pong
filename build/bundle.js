@@ -601,7 +601,7 @@ var Paddle = function () {
     //jquery equivelant of .on
     document.addEventListener('keydown', function (event) {
       //key pressed listner
-      event.preventDefault();
+      // event.preventDefault();
       switch (event.key) {
         case _this.upKey:
           _this.upPressed = true;
@@ -616,7 +616,7 @@ var Paddle = function () {
 
     document.addEventListener('keyup', function (event) {
       //key pressed listner
-      event.preventDefault();
+      // event.preventDefault();
       switch (event.key) {
         case _this.upKey:
           _this.upPressed = false;

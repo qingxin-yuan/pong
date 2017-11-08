@@ -24,7 +24,7 @@ export default class Paddle{
     //EVENTLISTENER FOR PADDLE MOVEMENT CONTROL AND FIRE SHOT CONTROL
     //jquery equivelant of .on
     document.addEventListener('keydown', event => {//key pressed listner
-      event.preventDefault();
+      // event.preventDefault();
       switch(event.key){
         case this.upKey: 
         this.upPressed = true;
@@ -38,7 +38,7 @@ export default class Paddle{
     });
     
     document.addEventListener('keyup', event => {//key pressed listner
-      event.preventDefault();
+      // event.preventDefault();
       switch(event.key){
         case this.upKey: 
         this.upPressed = false;
