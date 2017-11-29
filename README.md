@@ -30,6 +30,7 @@ A pong game using SVGs built with JavaScript.
 
 ## Screenshot
 ![Alt Text](/public/screenshots/screenshot1.png?raw=true "pong game screeshot one")
+![Alt Text](/public/screenshots/screenshot2.png?raw=true "pong game screeshot two")
 
 ## Features
 * Object-Oriented programming, using partials and instantiate in index.js; organized and easy to work with
