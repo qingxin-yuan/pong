@@ -28,6 +28,9 @@ A pong game using SVGs built with JavaScript.
 * ▼: down
 * enter: fire the ball after goal
 
+## Screenshot
+![Screen Shot](public/screenshots/screenshot1?raw=true "Quotes on Dev")
+
 ## Features
 * Object-Oriented programming, using partials and instantiate in index.js; organized and easy to work with
 * Working with SVGs including SVG tags, SVG namespace and append children of SVG tag using JavaScript
