@@ -10,4 +10,4 @@ const game = new Game('game', 512, 256);
 })();
 
 const music = new Audio('public/sounds/the-warden-maceo-plex-clipped.mp3');
-music.play();
+// music.play();
