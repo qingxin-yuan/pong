@@ -1,7 +1,7 @@
 import {SVG_NS, KEYS, boardGap, paddleWidth, paddleHeight, ballRadius} from '../settings'
 import Board from './Board'
 import Paddle from './Paddle'
-import Ball from './Ball'
+import FireableBall from './FireableBall'
 import Score from './Score'
 import TrippingBall from './TrippingBall'
 
@@ -23,7 +23,7 @@ export default class Game {
 		//INSTANTIATE OBJECTS FROM EACH CLASS ACCORDINGLY
 		this.board = new Board(this.width, this.height);
 		
-		this.ball = new Ball(this.ballRadius, this.width, this.height);
+		this.ball = new FireableBall(this.ballRadius, this.width, this.height);
 		
 		this.trippingball1 = new TrippingBall (this.ballRadius*2, this.width, this.height);
 		this.trippingball2 = new TrippingBall (this.ballRadius*0.7, this.width, this.height);
@@ -87,7 +87,7 @@ export default class Game {
 		this.paddleTwo.render(svg);
 
 		//AFTER EITHER GOAL REACHES 5, 7 TRIPPING BALLS ARE TRIGGERED, APPEARING RANDOMLY ON THE GAME BOARD
-		if (this.paddleOne.score < 5 && this.paddleTwo.score < 5){
+		if (this.paddleOne.score < 2 && this.paddleTwo.score < 2){
 			this.ball.render(svg, this.paddleOne, this.paddleTwo);
 		}
 		else {
