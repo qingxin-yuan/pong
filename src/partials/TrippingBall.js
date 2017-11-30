@@ -23,6 +23,34 @@ export default class TrippingBall extends Ball{
   
   }
 
+//METHOD FOR WALL COLLISION OF THE BALL, WITH GOAL CALCULATION AND BALL POSITION RESET AFTER GOAL
+wallCollision(paddle1,paddle2){
+  const hitLeft = (this.x - this.radius) <= 0;
+  const hitRight = (this.x + this.radius) >= this.boardWidth;
+  const hitTop = (this.y - this.radius) <=0;
+  const hitBottom = (this.y + this.radius) >= this.boardHeight;
+  
+  if (hitLeft){
+    this.direction = -1;
+    this.goal(paddle2);
+    // this.pong.play();
+    
+    // this.resetAfterGoal(paddle1,paddle2);
+    this.reset();
+  }
+  else if (hitRight){
+    this.direction = 1;
+    this.goal(paddle1);
+    // this.pong.play();
+    
+    // this.resetAfterGoal(paddle1,paddle2);
+    this.reset();
+  }
+  else if (hitTop || hitBottom){
+    this.vy = -this.vy;
+  }
+}
+
   //GENERATE RANDOM COLORS FOR THE TRIPPING BALL
   randomColor(){
     let color = '#',

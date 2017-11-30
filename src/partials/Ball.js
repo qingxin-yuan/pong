@@ -36,16 +36,16 @@ export default class Ball {
       this.goal(paddle2);
       // this.pong.play();
       
-      // this.resetAfterGoal(paddle1,paddle2);
-      this.reset();
+      this.resetAfterGoal(paddle1,paddle2);
+      // this.reset();
     }
     else if (hitRight){
       this.direction = 1;
       this.goal(paddle1);
       // this.pong.play();
       
-      // this.resetAfterGoal(paddle1,paddle2);
-      this.reset();
+      this.resetAfterGoal(paddle1,paddle2);
+      // this.reset();
     }
     else if (hitTop || hitBottom){
       this.vy = -this.vy;
