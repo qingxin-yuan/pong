@@ -90,7 +90,7 @@ export default class Game {
 		if (this.paddleOne.score < 2 && this.paddleTwo.score < 2){
 			this.ball.render(svg, this.paddleOne, this.paddleTwo);
 		}
-		else {
+		else if (this.paddleOne.score < 10 && this.paddleTwo.score < 10){
 			this.trippingball1.render(svg,this.paddleOne, this.paddleTwo);
 			this.trippingball2.render(svg,this.paddleOne, this.paddleTwo);
 			this.trippingball3.render(svg,this.paddleOne, this.paddleTwo);
@@ -100,8 +100,16 @@ export default class Game {
 			this.trippingball7.render(svg,this.paddleOne, this.paddleTwo);
 
 			//ANIMATE TEXT AND CHANGE BACKGROUND COLOR WHEN TRIPPING BALLS ARE TRIGGERED
-			document.getElementsByClassName('text')[0].setAttribute('id','text');
+			document.getElementsByClassName('text')[0].setAttribute('class','text text-tripping');
 			document.querySelector('body').setAttribute('style', 'background: #6b8e23');
+		}
+		else{
+			return;
+			//delete text "let's get tripping"
+			
+			// return;
+			// let endText = document.createElement('')
+			// document.getElementById('game').;
 		}
 
 

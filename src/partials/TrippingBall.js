@@ -19,7 +19,7 @@ export default class TrippingBall extends Ball{
     this.x = boardGap + paddleWidth+ this.radius+Math.random() * (this.boardWidth - 2*boardGap - 2*paddleWidth - 2*this.radius);
     this.y = Math.random() * (this.boardHeight - 2*this.radius)+this.radius;
     
-    super.reset();
+    super.randomSpeed();
   
   }
 
@@ -35,15 +35,13 @@ wallCollision(paddle1,paddle2){
     this.goal(paddle2);
     // this.pong.play();
     
-    // this.resetAfterGoal(paddle1,paddle2);
     this.reset();
   }
   else if (hitRight){
     this.direction = 1;
     this.goal(paddle1);
     // this.pong.play();
-    
-    // this.resetAfterGoal(paddle1,paddle2);
+
     this.reset();
   }
   else if (hitTop || hitBottom){
@@ -70,7 +68,7 @@ wallCollision(paddle1,paddle2){
     circle.setAttributeNS(null, 'r', this.radius);
     circle.setAttributeNS(null, 'cx',this.x);
     circle.setAttributeNS(null, 'cy', this.y);
-    // circle.setAttributeNS(null, 'fill', this.randomColor());
+    circle.setAttributeNS(null, 'fill', this.randomColor());
     circle.setAttributeNS(null, 'id', 'trippingBall');
     
     svg.appendChild(circle);

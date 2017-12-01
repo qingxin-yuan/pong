@@ -1,5 +1,6 @@
 import {boardGap, paddleWidth} from '../settings'
 
+//BASIC BALL CLASS
 export default class Ball {
   constructor(radius, boardWidth, boardHeight) {
     this.radius = radius;
@@ -7,11 +8,17 @@ export default class Ball {
     this.boardHeight = boardHeight;
     this.direction = 1;
     this.ping = new Audio('public/sounds/pong-03.wav');
-    
-    // this.reset();
+
   }
   
-  reset(){
+  initialization(){
+    this.x = this.boardWidth/2;
+    this.y = this.boardHeight/2;
+
+    this.randomSpeed();
+  }
+
+  randomSpeed(){
     
     //GENERATE RANDOM SPEED FOR THE BALL - VX & VY
     //vy random number b/w (-5, 5)
@@ -24,36 +31,10 @@ export default class Ball {
     
   }
   
-  //METHOD FOR WALL COLLISION OF THE BALL, WITH GOAL CALCULATION AND BALL POSITION RESET AFTER GOAL
-  wallCollision(paddle1,paddle2){
-    const hitLeft = (this.x - this.radius) <= 0;
-    const hitRight = (this.x + this.radius) >= this.boardWidth;
-    const hitTop = (this.y - this.radius) <=0;
-    const hitBottom = (this.y + this.radius) >= this.boardHeight;
-    
-    if (hitLeft){
-      this.direction = -1;
-      this.goal(paddle2);
-      // this.pong.play();
-      
-      this.resetAfterGoal(paddle1,paddle2);
-      // this.reset();
-    }
-    else if (hitRight){
-      this.direction = 1;
-      this.goal(paddle1);
-      // this.pong.play();
-      
-      this.resetAfterGoal(paddle1,paddle2);
-      // this.reset();
-    }
-    else if (hitTop || hitBottom){
-      this.vy = -this.vy;
-    }
-  }
-  
+  //METHOD FOR PADDLE COLLISION DETECTION
+  //fixed the bug that when ball resets at the edge of paddle, ball keeps bouncing
   paddleCollision(paddle1, paddle2){
-    if (this.vx > 0) {
+    if (this.vx > 0 && !paddle1.goal) {
       
       // detect paddle collision on the right side (paddle2)
       let paddle = paddle2.coordinates(paddle2.x, paddle2.y, paddle2.width, paddle2.height);
@@ -67,7 +48,7 @@ export default class Ball {
       }
     } 
     
-    else{
+    else if (this.vx < 0 && !paddle2.goal){
       //detect paddle collision on the left side (paddle1)
       let paddle = paddle1.coordinates(paddle1.x, paddle1.y, paddle1.width, paddle1.height);
       let {rightX, topY, bottomY} = paddle;//let variables only exist within this block
@@ -79,13 +60,13 @@ export default class Ball {
         this.ping.play();
       }
     }
-    
   }
 
   //METHOD FOR COUNTING GOAL FOR THE PADDLE
   goal(paddle){
     paddle.score++;
     paddle.goal = true;
+
   }
   
   

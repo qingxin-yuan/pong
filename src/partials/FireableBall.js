@@ -8,47 +8,35 @@ export default class FireableBall extends Ball {
     super(radius, boardWidth, boardHeight);
     this.pong = new Audio('public/sounds/pong-04.wav');
 
-    this.reset();
+    super.initialization();
   }
 
-  reset(){
-    super.reset();
+  
 
-    this.x = this.boardWidth/2;
-    this.y = this.boardHeight/2;
-  }
-
-  //METHOD FOR PADDLE COLLISION DETECTION
-  //fixed the bug that when ball resets at the edge of paddle, ball keeps bouncing
-  paddleCollision(paddle1, paddle2){
-    if (this.vx > 0 && !paddle1.goal) {
-      
-      // detect paddle collision on the right side (paddle2)
-      let paddle = paddle2.coordinates(paddle2.x, paddle2.y, paddle2.width, paddle2.height);
-      let {leftX, topY, bottomY} = paddle;
-      
-      if (
-        (this.x+this.radius >= leftX) && (this.y >= topY ) && (this.y <= bottomY)
-      ){
-        this.vx = -this.vx;
-        this.ping.play();
-      }
-    } 
+  //METHOD FOR WALL COLLISION OF THE BALL, WITH GOAL CALCULATION AND BALL POSITION RESET AFTER GOAL
+  wallCollision(paddle1,paddle2){
+    const hitLeft = (this.x - this.radius) <= 0;
+    const hitRight = (this.x + this.radius) >= this.boardWidth;
+    const hitTop = (this.y - this.radius) <=0;
+    const hitBottom = (this.y + this.radius) >= this.boardHeight;
     
-    else if (this.vx < 0 && !paddle2.goal){
-      //detect paddle collision on the left side (paddle1)
-      let paddle = paddle1.coordinates(paddle1.x, paddle1.y, paddle1.width, paddle1.height);
-      let {rightX, topY, bottomY} = paddle;//let variables only exist within this block
+    if (hitLeft){
+      this.direction = -1;
+      this.goal(paddle2);
+      // this.pong.play();
       
-      if(
-        (this.x-this.radius <= rightX) && (this.y >= topY) && (this.y <= bottomY)
-      ){
-        this.vx = -this.vx;
-        this.ping.play();
-      }
-      
+      this.resetAfterGoal(paddle1,paddle2);
     }
-    
+    else if (hitRight){
+      this.direction = 1;
+      this.goal(paddle1);
+      // this.pong.play();
+      
+      this.resetAfterGoal(paddle1,paddle2);
+    }
+    else if (hitTop || hitBottom){
+      this.vy = -this.vy;
+    }
   }
 
   //METHOD TO RESET THE BALL AT WINNER'S SIDE OF THE PADDLE
@@ -75,21 +63,14 @@ export default class FireableBall extends Ball {
     //generate speed when there's a goal on either side
     if (paddle1.goal && paddle1.fireKeyPressed){
       
-      while (this.vy===0){
-        this.vy = Math.floor(Math.random() * 10 - 5); 
-      }
-      //set vx accordingly, use 6 to avoide vx being 0
-      this.vx = this.direction * (6 - Math.abs(this.vy));
+      super.randomSpeed();
       
       paddle1.fireKeyPressed = false;
       paddle1.goal = false;
     } 
     else if (paddle2.goal && paddle2.fireKeyPressed){
-      while (this.vy===0){
-        this.vy = Math.floor(Math.random() * 10 - 5); 
-      }
-      //set vx accordingly, use 6 to avoide vx being 0
-      this.vx = this.direction * (6 - Math.abs(this.vy));
+
+      super.randomSpeed();
       
       paddle2.fireKeyPressed = false;
       paddle2.goal = false;

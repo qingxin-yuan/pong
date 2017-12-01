@@ -88,7 +88,7 @@ h1 {
 .text{
   display: none;
 }
-#text{
+.text-tripping{
   display: block;
   text-align: center;
   animation: tripping 1s ease-in-out infinite;
