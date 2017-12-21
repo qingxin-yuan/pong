@@ -28,7 +28,7 @@ A pong game using SVGs built with JavaScript.
 * ▼: down
 * enter: fire the ball after goal
 
-Space: Pause
+**Space:** Pause
 
 ## Screenshot
 ![Alt Text](/public/screenshots/screenshot1.png?raw=true "pong game screeshot one")
@@ -42,7 +42,7 @@ Space: Pause
 ## Stretch Goal Achieved
 * Paddle smooth movement using keyup & keydown event listener
 * Ball reset along the center of the edge of the paddle which scored
-* 7 balls randomly (position & direction) generated with tripping colors upon score of 5 reached on either side
+* 7 balls randomly (position & direction) generated with tripping colors upon score of 10 reached on either side
 * Text animation and background color change when the above condition satisfied
 
 ## To Do (More Stretch Goals)
