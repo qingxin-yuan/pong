@@ -1,5 +1,3 @@
-// import {paddleWidth} from '../settings'
-
 //BASIC BALL CLASS
 export default class Ball {
   constructor(radius, boardWidth, boardHeight) {

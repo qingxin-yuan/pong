@@ -28,6 +28,8 @@ A pong game using SVGs built with JavaScript.
 * ▼: down
 * enter: fire the ball after goal
 
+Space: Pause
+
 ## Screenshot
 ![Alt Text](/public/screenshots/screenshot1.png?raw=true "pong game screeshot one")
 ![Alt Text](/public/screenshots/screenshot2.png?raw=true "pong game screeshot two")
