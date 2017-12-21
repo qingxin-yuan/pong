@@ -1,4 +1,4 @@
-import {boardGap, paddleWidth} from '../settings'
+// import {paddleWidth} from '../settings'
 
 //BASIC BALL CLASS
 export default class Ball {
